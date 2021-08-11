@@ -140,6 +140,10 @@ Extension for Firefly will support ability to view proposal available for vote, 
 ## Firefly / DAO Website Mock-ups
 TBD
 
+### IDEAS 
+Proposals on DAO Website could be similar to Github Discussions:
+![](https://i.imgur.com/5jjwyax.png)
+
 # Questions
 - What do we think about mock-ups?
 - Is there any sample plugin already developed for Firefly (cound't find one)? 
