@@ -2,12 +2,14 @@
 
 # Overview
 
-This specification summarizes requirements to implement voting tech to support the IOTA Treasury.
+This specification summarizes requirements to develop the technology to be used in the initial vote to burn the tokens or form the IOTA Community Treasury.
 
-This overview highlights various use cases and high-level technical designs combined with mock-ups.
-A more detailed design on approach will follow once requirements,dependencies and scope are refined and agreed upon. 
+Assuming the decision is made to form a Community Treasury, this voting system can be adapted to support the early operations of the newly created Community Treasury.
 
-Flexibility is important at this stage. Therefore the initial design provides the opportunity to evaluate various technical approaches that could be prototyped and decided upon in the future.The intent is to encourage a more agile process moving forward.
+The following overview highlights various use cases and high-level technical designs combined with mock-ups of the proposed system.
+A more detailed design will follow once requirements,dependencies and scope are refined and agreed upon. 
+
+Flexibility is important at this stage. Therefore the initial design provides the opportunity to evaluate various technical approaches that could be prototyped and decided upon in the future.The intent is to encourage a more agile process as we move forward.
 
 **Voting tech consists of three parts:**
 - Hornet Node plug-in. See RFC: https://github.com/WernerderChamp/protocol-rfcs/blob/master/text/0000-chrysalis-referendum/0000-chrysalis-referendum.md
@@ -22,7 +24,7 @@ You can find various documented meeting notes in the governance [Github reposito
 Finally, many conversations and  meetings with several community members took place to help develop the approach.
 
 
-> **Once this document is finalized**; it should be scrutinized by the community and agreed too. This proposal **"could"** essentially become a requirement document for the voting tech that will be needed to be built.Thus establishing the base specification.
+> **Once this document is finalized**; it should be scrutinized by the community and agreed upon. This proposal **"could"** essentially become a requirements document for the voting tech that will be need to be built. Thus establishing the base specification.
 
 Key caveats:
 >   The Hornet node plug-in is (supposed to be) built by the Hornet team.
@@ -31,11 +33,22 @@ Key caveats:
 >   
 Finalizing this document **"will"** speed up the process of finding the right team(s) to build the voting tech. 
 
-We are flexible on the approach taken on this proposal and are open to discuss alternative strategies.
+We are flexible on the approach taken in this proposal and are open to discuss alternative strategies.
+
+## How to propose changes in this document
+Please submit your suggestions via pull request within [this](https://github.com/iota-community/Community-Governance) repository.
+
+## TODO
+
+- [ ] expand uses cases in more details
+- [ ] expand possible technical solutions
+- [ ] understand how to store/access historical vote results (hornet permanode with voting plugin??, github?)
+- [ ] will Firefly be used to manage proposals or only active one / voted on
+- [ ] explain in detail how we post new proposal into the tangle and make it truly immutable (before it’s uploaded to Node)
+- [ ] Initiate process to agree to a domain name
 
 ## Terms
-- [Hornet](https://github.com/gohornet/hornet) - Community driven IOTA Full Node
-- [Hornet Plugin](https://github.com/gohornet/hornet/tree/main/plugins) - Extension within Hornet that can be used by various node operators
+- [Hornet](https://github.com/gohornet/hornet) - Community driven IOTA Full Node- [Hornet Plugin](https://github.com/gohornet/hornet/tree/main/plugins) - Extension within Hornet that can be used by various node operators
 - [Firefly](https://github.com/iotaledger/firefly) - IOTA's official wallet 
 - Proposal - Proposal to be voted on by IOTA's token holders
 - Question - Each proposal can consist of multiple question and each of them can have various voting options.
@@ -49,12 +62,18 @@ It is desired to get this tech up and running ASAP. The intent is to avoid build
 
 For example, many parts might change due to the [ISCP](https://github.com/iotaledger/wasp) introduction and the DAO intends to start voting ASAP. 
 
-Once ISCP is introduced on the IOTA's Mainnet, we should move away from some parts highlighted below in the system (i.e. Github) and use ISCP instead. Ideally, we could do this without a significant impact on the users. 
+Once ISCP is introduced on IOTA's Mainnet, we should move away from some parts highlighted below in the system (i.e. Github) and use ISCP instead. Ideally, we could do this without a significant impact to the users. 
 
 Lastly, it is essential for the community to start making decisions ASAP if we are going ahead to BUILD or BURN treasury funds, as this can significantly impact IOTA's future adoption.
 
 ### Github
-We envision IOTA's Community Governance Github repository to be utilized for proposal management before the submission to nodes and Firefly. It is considered a trustworthy source for proposals at this stage. This seems to be a sufficient method before ISCP is introduced. It provides enough transparency into the process and allows everyone to participate.
+We envision IOTA's Community Governance Github repository to be utilized for proposal management. This will serve as a staging area for proposals prior to  their final submission to the community nodes and Firefly.
+
+Github is considered a trustworthy source and provides a fairly secure environment for proposals at this stage. 
+
+This method should be sufficient for our initial rollout as we await the release of ISCP.
+
+The benefits of this approach is that it provides enough transparency into the process and allows everyone to participate.
 
 ### Hornet Node plugin
 As specified within the RFC, participating node operators can utilize the Hornet plugin to provide critical functions to support the voting process. Such as: 
@@ -63,13 +82,13 @@ As specified within the RFC, participating node operators can utilize the Hornet
 - Ability to count the issued votes based on token amount, holding period and stated opinion on UTXO's and produce the final results of every vote out of this counting process.
 
 ### Website
-The Website should be a simple single page application (React, Angular, Vue, etc.) that sources data from the above two sources:
+The Website should be a simple single page application (React, Angular, Vue, etc.) that sources data from the these two sources:
 - Github
 - Hornet Node
 
-Proposal management and voting will be managed within the two listed above and the website. It's a simple UI design on the top to present the information in a better fashion and help users to understand the process.
+Proposal management and voting will be managed within the two listed above and the website. It's a simple UI design on the top to present the information in a friendlier fashion to help users better understand the process.
 
-It could be leveraged to provide an introduction to the voting process and provide tutorials for the user how to manage his voting attempt.
+Additionally, it could be leveraged to provide an introduction to the voting process and provide tutorials for the user on how to manage his/her voting attempt.
 
 > Potentially, the Website can integrate with Github and allow proposal management within the application (i.e. simplify it for users without Github knowledge). This can help transition to ISCP as users do not need to get used to the new system, and it'll be just underlying tech that changes.
 > 
@@ -113,7 +132,7 @@ Main purpose is the ability for the user to cast their vote, change their vote a
     * Note, Firefly could get proposals from the master branch and also from nodes depending how we design the API requests. There might be a scenario where it's not yet uploaded to nodes. **(we should discuss if we will not just use a request to GitHub and skip the node part)**
 * By default, users only see upcoming/in progress proposals
 * They can filter and see ended ones (history)
-* User should be easily identify proposals still pending their vote 
+* User should be able to easily identify proposals still pending their vote 
 * User can easily open proposal on the DAO Website to access fully history (i.e. pre-approval)
 ### Submit Vote
 * User selects the proposal which is still pending their vote
@@ -193,25 +212,25 @@ Proposals on DAO Website could be similar to Github Discussions:
 
 ## Simple notes/overview, for now, to agree on for RFC
 - Node implementation
-    - see the other RFC https://github.com/WernerderChamp/protocol-rfcs/blob/master/text/0000-chrysalis-referendum/0000-chrysalis-referendum.md
+    - ~~see the other RFC https://github.com/WernerderChamp/protocol-rfcs/blob/master/text/0000-chrysalis-referendum/0000-chrysalis-referendum.md~~
   - This needs to be still worked out more...  data sizes are too big; IMHO 1 MB proposal size is not useful
 
 - Proposals management/retrieval within Firefly
-    - Github will be used to manage and store proposals. The Website can provide a guide for this. 
+    - ~~Github will be used to manage and store proposals. The Website can provide a guide for this.~~ 
     - During the building / creating phase we can think about keeping the community proposal option flat, as it would be ideal that mostly the "builders" of the DAO system use this as a way to gather the opinion of the community how to proceed in the development. Random community proposals might hinder and slow down the development uneccessary
-    - Pull Requests will be used to manage the flow. This includes submission, review, opinions, and approval. This can all be handled within pull requests before we've got smart contracts.
-    - There will be a committee that can approve the pull requests into the master. Ideally consists of members from the community and IF. Once merged into the master, hashing of the proposal will be created and stored in the tangle for verification purposes. This hash must be posted as value transaction against a particular address - (this might not be required if /referendum/{referendumID} can be used to validate it exists on the node and hashes are the same)
+    - ~~Pull Requests will be used to manage the flow. This includes submission, review, opinions, and approval. This can all be handled within pull requests before we've got smart contracts.~~
+    - ~~There will be a committee that can approve the pull requests into the master. Ideally consists of members from the community and IF.~~ Once merged into the master, hashing of the proposal will be created and stored in the tangle for verification purposes. This hash must be posted as value transaction against a particular address - (this might not be required if /referendum/{referendumID} can be used to validate it exists on the node and hashes are the same)
     - (optional) Once merged into the master, Github release must be created to release these proposals to Firefly / Nodes (I'm not sure this step might be necessary)
     - (out of this RFC) - node operator can retrieve merged proposals from the master branch and upload it on their node to make it available for referendum automatically (this will have to be optional)
     - Because Firefly checks proposals within the Github repository (true source), we're able to tell the user if the node they're using did not yet upload the proposals
 - Voting in Firefly
     - New plugin for Firefly will be developed to support voting
-        - Tell the user when there is a new vote 
-        - Allow them to vote
-        - Monitor progress of the vote
-        - See historical votes and their choices
+        - ~~Tell the user when there is a new vote ~~
+        - ~~Allow them to vote~~
+        - ~~Monitor progress of the vote~~
+        - ~~See historical votes and their choices~~
         - Mobile support should not be blocking (too much delay)
-    - Firefly must support voting per wallet. It'll not support vote per address (each wallet can have multiple addresses)
+    - ~~Firefly must support voting per wallet.~~ It'll not support vote per address (each wallet can have multiple addresses)
     - Voting will be a similar process to sending payments, although the user will never lose ownership of their funds. This must be clearly explained.
     The user can change the vote and will be informed if his vote is no longer valid because they have moved some balance. (Users should be informed before they take any action that would influence, change or invalidate the current vote)
     - User will be provided with visualization
@@ -222,9 +241,9 @@ Proposals on DAO Website could be similar to Github Discussions:
 
 - Web
     - Build a Website with videos to explain the process
-    - Show upcoming/historical/ongoing proposals
-        - for ongoing, it can show all the details (i.e., votes per question, votes per day per question, etc.)
-    - Build essential integration with Github or redirect to Github
+    - ~~Show upcoming/historical/ongoing proposals~~
+        - for ongoing (historical too ideally), it can show all the details (i.e., votes per question, votes per day per question, etc.)
+    - ~~Build essential integration with Github or redirect to Github~~
     - No need for any user management. It will most likely be more a static website mainly reading information from Github/Nodes **(Future user management IOTA Identity could be a great match here)**
-    - Ability to subscribe to news email/Twitter/discord/else?
-    - Agree to a domain name
+    - ~~Ability to subscribe to news email/Twitter/discord/else?~~
+    - ~~Agree to a domain name~~
