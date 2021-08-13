@@ -45,6 +45,8 @@ Please submit your suggestions via pull request within [this](https://github.com
 - [ ] understand how to store/access historical vote results (hornet permanode with voting plugin??, github?)
 - [ ] will Firefly be used to manage proposals or only active one / voted on
 - [ ] explain in detail how we post new proposal into the tangle and make it truly immutable (before it’s uploaded to Node)
+- [ ] Establish potential transition plan to ISCP and develop an approach to make this transition invisible to the end user
+- [ ] IOTA DID Is that something we want to consider already or wait until it's mature enough? Github/Discord login might be sufficient enough for now. 
 - [ ] Initiate process to agree to a domain name
 
 ## Terms
@@ -208,7 +210,7 @@ Proposals on DAO Website could be similar to Github Discussions:
 - Any concerns opening external links from Firefly (to our Website)? Need to be whitelisted beforehand
 - Any concerns to source data from multiple nodes? (i.e. present voting stats from various nodes)
 
-# Notes (to the initiate above)
+# Notes (to initiate above)
 
 ## Simple notes/overview, for now, to agree on for RFC
 - Node implementation
